@@ -1,0 +1,18 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="entity">
+	<class name="Product" table="PRODUCT">
+		<id name="id" column="id">
+			<generator class="increment"/>
+		</id>
+		<property name="name" type="java.lang.String" column="name" length="20" />
+		<property name="proTypeId" type="int" column="proTypeId"/>
+		<property name="price" type="java.lang.Double" column="price"/>
+		<property name="img1" type="java.lang.String" column="name" length="20" />
+		<property name="img2" type="java.lang.String" column="name" length="20" />
+		<property name="img3" type="java.lang.String" column="name" length="20" />
+		
+	</class>
+</hibernate-mapping>

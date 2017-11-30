@@ -50,6 +50,9 @@ public class ProductServiceImpl implements ProductService{
 		pdi.deleteProduct(id);
 		
 	}
+	public void updateProduct(Product p){
+		pdi.updateProduct(p);
+	}
 	
 	
 	

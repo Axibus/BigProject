@@ -121,6 +121,30 @@ public class productDaoImpl implements ProductDao{
 		
 		
 	}
+	@Override
+	public void updateProduct(Product p) {
+		
+		Session session = null;
+        Transaction tran = null;
+
+        try {
+            session = sessionFactory.openSession();
+            tran = session.beginTransaction();// 开启事务
+
+            // 保存用户
+            session.update(p);
+
+            tran.commit();// 提交事务
+
+        } catch (Exception e) {
+           tran.rollback();// 回滚事务
+       } 
+            finally {
+            	session.flush();
+            	session.close();// 关闭session
+        }
+		
+	}
 	
 	
 	

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="edit" method="post">
+	<form action=productedit method="get">
 		ProductId:  <span name="id">${p.getId() }</span>
 		name:*<input type ="text" name="name" value="${p.getName() }" />
 		ProductTypeId:*<input type ="text" name="pid" value="${p.getProTypeId() }" />

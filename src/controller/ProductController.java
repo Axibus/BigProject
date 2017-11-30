@@ -43,30 +43,29 @@ public class ProductController {
 		
 		
 	}
-	@RequestMapping(value="editProduct/{id}",method=RequestMethod.POST)
+	@RequestMapping(value="editProduct/{id}",method=RequestMethod.GET)
 	public ModelAndView editProduct(@PathVariable int id){
-		Product p = new Product();
-		p = psi.findProductById(id);
-		ModelAndView mAndView = new ModelAndView("forward:editproduct.jsp");
-		mAndView.addObject("product",p);
+		Product p = psi.findProductById(id);
+		ModelAndView mAndView = new ModelAndView("editproduct");
+		mAndView.addObject("p",p);
 		return mAndView;
 		
 	}
-	@RequestMapping(value="edit",method=RequestMethod.GET)
-	public ModelAndView productEdit(@RequestParam(value="id",required=false)int id,@RequestParam(value="name",required=false)String name,@RequestParam(value="pid",required=false)int pid,@RequestParam(value="price",required=false)double price){
+	@RequestMapping(value="productedit")
+	public String productEdit(@RequestParam(value="id",required=false)int id,@RequestParam(value="name",required=false)String name,@RequestParam(value="pid",required=false)int pid,@RequestParam(value="price",required=false)double price){
 		Product p = psi.findProductById(id);
+		System.out.println("asdf");
 		p.setName(name);
 		p.setProTypeId(pid);
 		p.setPrice(price);
-		ModelAndView mAndView = new ModelAndView("listview.jsp");
-		return mAndView;
+		psi.updateProduct(p);
+		return "listview";
 	}
 	
 	@RequestMapping(value="deleteproduct/{id}",method=RequestMethod.GET)
-	public ModelAndView deleteProduct(@PathVariable int id){
+	public String deleteProduct(@PathVariable int id){
 		psi.deleteProduct(id);
-		ModelAndView mAndView = new ModelAndView("listview.jsp");
-		return mAndView;
+		return "listview";
 	}
 	
 	

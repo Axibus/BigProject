@@ -14,6 +14,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="no-js" lang="en">
     <head>
+    
+    
+<%  
+String path = request.getContextPath();  
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";  
+%> 
+<base href="<%=basePath%>">  
+    
+    
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>List-View</title>
@@ -62,7 +71,12 @@ while(rs.next()){
 }
 con.close();
 request.setAttribute("list",list);
+
+
+
 %>
+
+
 
 
         <!--header top area start-->
@@ -849,7 +863,7 @@ request.setAttribute("list",list);
                                     </div>
                                 </div>
                                 <div>
-                                <td><a href="editproduct/${p.getId() }">修改</a>
+                                <td><a href="editProduct/${p.getId() }">修改</a>
 								<a href="deleteproduct/${p.getId() }">删除</a></td>
                                 </div>
                                 </form>

@@ -7,11 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action=productedit method="get">
-		ProductId:  <span name="id">${p.getId() }</span>
-		name:*<input type ="text" name="name" value="${p.getName() }" />
-		ProductTypeId:*<input type ="text" name="pid" value="${p.getProTypeId() }" />
-		Price:*<input type ="text" name="price" value="${p.getPrice() }" />
+	<form action="productedit" method="get">
+		ProductId:  <span name="id">${p.getId() }</span></br>
+		name:*<input type ="text" name="name" >原值：${p.getName() }</br>
+		ProductTypeId:*<input type ="text" name="pid">原值：${p.getProTypeId() }</br>
+		Price:*<input type ="text" name="price">原值：${p.getPrice() }</br>
 		<input type ="submit"/>
 	
 	</form>

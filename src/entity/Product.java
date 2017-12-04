@@ -1,9 +1,13 @@
 package entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class Product {
@@ -16,6 +20,8 @@ public class Product {
 
 	private String img2;
 	private String img3;
+	@Transient
+	private Set<User> userSet = new HashSet<User>();
 	
 	public Double getPrice() {
 		return price;
@@ -58,7 +64,7 @@ public class Product {
 
 	public Product(){};
 	
-	public Product(Integer id,String name, int proTypeId, double price,String img1,String img2,String img3){
+	public Product(Integer id,String name, int proTypeId, double price,String img1,String img2,String img3,Set uSet){
 		super();
 		this.id = id;
 		this.name = name;
@@ -67,10 +73,21 @@ public class Product {
 		this.img1 = img1;
 		this.img2 = img2;
 		this.img3 = img3;
+		this.userSet = uSet;
 		
 	};
 	
 	
+	public Set<User> getUserSet() {
+		return userSet;
+	}
+
+
+	public void setUserSet(Set<User> userSet) {
+		this.userSet = userSet;
+	}
+
+
 	public int getId() {
 		return id;
 	}

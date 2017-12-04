@@ -14,5 +14,10 @@
 		<property name="img2" type="java.lang.String" column="name" length="20" />
 		<property name="img3" type="java.lang.String" column="name" length="20" />
 		
+		<set name="userSet" table="CartInformation" inverse="true">
+		<key column="PRODUCTID"/>
+		<many-to-many class="User" column="USERID"/>
+		</set>
+		
 	</class>
 </hibernate-mapping>

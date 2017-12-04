@@ -13,7 +13,7 @@
 	setInterval("refer()",1000); //启动1秒定时 
 	function refer(){  
 	    if(t==0){ 
-	        location="index.jsp"; //#设定跳转的链接地址 
+	        location="listviewforcustomer.jsp"; //#设定跳转的链接地址 
 	    } 
 	    document.getElementById('show').innerHTML=""+t+"秒后跳转到主页"; // 显示倒计时 
 	    t--; // 计数器递减 

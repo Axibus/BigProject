@@ -51,14 +51,14 @@ public class ProductController {
 		return mAndView;
 		
 	}
-	@RequestMapping(value="/productedit",method=RequestMethod.GET)
-	public String productEdit(@RequestParam(value="id",required=false)Integer id,@RequestParam(value="name",required=false)String name,@RequestParam(value="pid",required=false)Integer pid,@RequestParam(value="price",required=false)double price){
+	@RequestMapping(value="editProduct/productedit",method=RequestMethod.POST)
+	public String productEdit(@RequestParam(value="id",required=false)int id,@RequestParam(value="name",required=false)String name,@RequestParam(value="pid",required=false)int pid,@RequestParam(value="price",required=false)double price){
 		Product p = psi.findProductById(id);
-		System.out.println("asdf");
 		p.setName(name);
 		p.setProTypeId(pid);
 		p.setPrice(price);
 		psi.updateProduct(p);
+		//ModelAndView mAndView = new ModelAndView("listview");
 		return "listview";
 	}
 	

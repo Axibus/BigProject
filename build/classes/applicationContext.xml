@@ -46,6 +46,8 @@
 		</property>
 	</bean>
 	
+	
+	
 	<!-- 使用annotation定义事务 -->
 	
 	<bean id="transactionManager"

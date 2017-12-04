@@ -66,4 +66,10 @@ public class UserController {
 		return "registok";
 		}
 	}
+	@RequestMapping(value="listviewforcustomer",method=RequestMethod.POST)
+	public ModelAndView listView(){
+		ModelAndView mAndView = new ModelAndView("forward:listviewforcustomer.jsp");
+		
+		return mAndView;
+	}
 }

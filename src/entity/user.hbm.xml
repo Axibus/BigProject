@@ -11,10 +11,15 @@
 		<property name="password" type="java.lang.String" column="password" length="20" />
 		<property name="eMail" type="java.lang.String" column="email" length="20" />
 		<property name="admin" column="admin"/>
-		
+		<!-- 商品信息多对多 -->
 		<set name="productSet" table="CartInformation" inverse="false">
 		<key column="USERID"/>
-		<many-to-many class="Product" column="PRODUCTID"/>
+		<many-to-many class="entity.Product" column="PRODUCTID"/>
+		</set>
+		<!-- 地址一对多 -->
+		<set name="addressSet" table="address" cascade="all">
+			<key column="USERID"/>
+			<one-to-many class="entity.Address"/>
 		</set>
 	
 	</class>

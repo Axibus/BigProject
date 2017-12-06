@@ -1,13 +1,20 @@
 package entity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import javax.persistence.JoinColumn;
 
 
 @Entity
@@ -18,18 +25,32 @@ public class User {
 	private String password;
 	private String eMail;
 	private Boolean admin;
+	@OneToMany(mappedBy="user", targetEntity=Address.class, cascade=CascadeType.ALL)
+	private Set addressSet= new HashSet<Address>();;
 	
-	@Transient
+	@ManyToMany @JoinTable(name="cartinformation", 
+			joinColumns=@JoinColumn(name="USERID"), 
+			inverseJoinColumns=@JoinColumn(name="PRODUCTID"))
 	private Set<Product> productSet = new HashSet<Product>();
 	
+	
+	public Set getAddressSet() {
+		return addressSet;
+	}
+	public void setAddressSet(Set addressSet) {
+		this.addressSet = addressSet;
+	}
+	
+	
 	public User(){};
-	public User(int id,String name,String password,String eMail,Set pSet){
+	public User(int id,String name,String password,String eMail,Set<Product> pSet,Set<Address> addressSet){
 		super();
 		this.userId = id;
 		this.userName = name;
 		this.password = password;
 		this.eMail = eMail;
 		this.productSet = pSet;
+		this.addressSet = addressSet;
 	}
 	public Boolean getAdmin() {
 		return admin;

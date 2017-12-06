@@ -90,4 +90,25 @@ public class UserController {
 		return "myaccount";
 	}
 	
+	
+	//修改用户信息
+	@RequestMapping(value="useredit")
+	public String userEdit(@RequestParam("name")String name,@RequestParam("password")String password,@RequestParam("email")String email, HttpSession session){
+		User u = (User)session.getAttribute("user");
+		if(usi.findUserByNameOrEmail(name)!=null){
+			return "nameexist";
+		}else{
+			if(usi.findUserByNameOrEmail(email)!=null){
+				return "emailexist";
+			}else{
+				u.setUserName(name);
+				u.seteMail(email);
+				u.setPassword(password);
+				return "userinfo";
+			}
+		}
+		
+		
+	}
+	
 }

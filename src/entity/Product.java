@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
 
 @Entity
@@ -20,7 +21,7 @@ public class Product {
 
 	private String img2;
 	private String img3;
-	@Transient
+	@ManyToMany(mappedBy="productSet")
 	private Set<User> userSet = new HashSet<User>();
 	
 	public Double getPrice() {

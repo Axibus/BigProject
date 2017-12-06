@@ -575,7 +575,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                             <div class="evavet_description">
                             	<!-- 图片滚动 -->
-                                <p>简介</p>
+                                <p>${p.getIntro() }</p>
                             </div>
                             <div class="elavetor_social">
                                 <h3 class="widget-title">Share this product</h3>

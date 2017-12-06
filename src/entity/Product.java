@@ -21,6 +21,8 @@ public class Product {
 
 	private String img2;
 	private String img3;
+	private String intro;
+	
 	@ManyToMany(mappedBy="productSet")
 	private Set<User> userSet = new HashSet<User>();
 	
@@ -65,7 +67,7 @@ public class Product {
 
 	public Product(){};
 	
-	public Product(Integer id,String name, int proTypeId, double price,String img1,String img2,String img3,Set uSet){
+	public Product(Integer id,String name, int proTypeId, double price,String img1,String img2,String img3,Set uSet,String intro){
 		super();
 		this.id = id;
 		this.name = name;
@@ -75,8 +77,18 @@ public class Product {
 		this.img2 = img2;
 		this.img3 = img3;
 		this.userSet = uSet;
+		this.intro = intro;
 		
 	};
+	
+	public String getIntro() {
+		return intro;
+	}
+
+
+	public void setIntro(String intro) {
+		this.intro = intro;
+	}
 	
 	
 	public Set<User> getUserSet() {

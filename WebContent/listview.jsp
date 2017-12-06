@@ -73,8 +73,10 @@ while(rs.next()){
 	p.setImg1(rs.getString(5));
 	p.setImg2(rs.getString(6));
 	p.setImg3(rs.getString(7));
+	p.setIntro(rs.getString(8));
 	list.add(p);
 }
+
 con.close();
 request.setAttribute("list",list);
 
@@ -804,9 +806,7 @@ request.setAttribute("list",list);
                                                             <img class="secondary-img" src="${p.getImg2() }" alt="" />
                                                             </a>
                                                         </div>
-                                                        <div class="product-action" data-toggle="modal" data-target="#myModal">
-                                                            <button type="button" class="btn btn-info btn-lg quickview quickview_2" data-toggle="tooltip" title="Quickview">Quick View</button>   
-                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
                                                 <div class="col-md-8 col-sm-8 pl pr">
@@ -816,8 +816,9 @@ request.setAttribute("list",list);
                                                                 <h2>
                                                                     <a href="#">${p.getName() }</a>
                                                                 </h2>
+                                                                <p>${p.getIntro() }</p>
                                                                 <div class="pro_discrip">
-                                                                    <p>${p.getProTypeId() }</p>
+                                                                    <p>简介：${p.getName() } ${p.getIntro() }</p>
                                                                 </div>
                                                             </div>
                                                             <div class="action actionmm">

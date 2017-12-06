@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-							<form action="addproduct" method="post">
+							<form action="addproduct" method="post" enctype="multipart/form-data">
                                 <div class="al_form-fields">
                                     <p>
                                         <label>
@@ -29,6 +29,34 @@
                                         <span class="required">*</span>
                                         </label>
                                         <input type="text" name="price">
+                                    </p>
+                                    <p>
+                                        <label>
+                                        Img1
+                                        <span class="required">*</span>
+                                        </label>
+                                        <input type="file" name="img1">
+                                    </p>
+                                    <p>
+                                        <label>
+                                        Img2
+                                        <span class="required">*</span>
+                                        </label>
+                                        <input type="file" name="img2">
+                                    </p>
+                                    <p>
+                                        <label>
+                                        Img3
+                                        <span class="required">*</span>
+                                        </label>
+                                        <input type="file" name="img3">
+                                    </p>
+                                    <p>
+                                        <label>
+                                        Intro
+                                        <span class="required">*</span>
+                                        </label>
+                                        <textarea name="intro" rows="5" cols="40"></textarea>
                                     </p>
                                 </div>
                                 <div class="form-action">

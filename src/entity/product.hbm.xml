@@ -10,10 +10,10 @@
 		<property name="name" type="java.lang.String" column="name" length="20" />
 		<property name="proTypeId" type="int" column="proTypeId"/>
 		<property name="price" type="java.lang.Double" column="price"/>
-		<property name="img1" type="java.lang.String" column="name" length="20" />
-		<property name="img2" type="java.lang.String" column="name" length="20" />
-		<property name="img3" type="java.lang.String" column="name" length="20" />
-		
+		<property name="img1" type="java.lang.String" column="name" length="255" />
+		<property name="img2" type="java.lang.String" column="name" length="255" />
+		<property name="img3" type="java.lang.String" column="name" length="255" />
+		<property name="intro" type="java.lang.String" column="intro" length="255" />
 		<set name="userSet" table="CartInformation" inverse="true">
 		<key column="PRODUCTID"/>
 		<many-to-many class="User" column="USERID"/>

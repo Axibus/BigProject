@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +21,8 @@ public class UserController {
 	@Resource
 	private UserServiceImpl usi;
 	
+	
+	//登陆
 	@RequestMapping(value="/login" , method=RequestMethod.POST)
 	public ModelAndView login(@RequestParam(value="nameoremail",required=false)String nameoremail,@RequestParam(value="password",required=false)String password,HttpSession httpSession){
 		
@@ -62,6 +65,7 @@ public class UserController {
 		u.setUserName(name);
 		u.seteMail(email);
 		u.setPassword(password);
+		u.setAdmin(null);
 		usi.regist(u);
 		return "registok";
 		}
@@ -72,4 +76,18 @@ public class UserController {
 		
 		return mAndView;
 	}
+	@RequestMapping(value="deleteuser/{id}")
+	public String deleteUser(@PathVariable int id){
+		usi.deleteUser(id);
+		
+		return "userlist";
+	}
+	
+	@RequestMapping("cancellation")
+	public String userCancellation(HttpSession session){
+		session.removeAttribute("user");
+		
+		return "myaccount";
+	}
+	
 }

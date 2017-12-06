@@ -6,4 +6,5 @@ public interface UserService {
 	
 	public User findUserByNameOrEmail(String nameoremail);
 	public void regist(User user);
+	public void deleteUser(int id);
 }

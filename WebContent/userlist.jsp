@@ -1,4 +1,3 @@
-<%@page import="impls.ProductServiceImpl"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -7,12 +6,11 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="java.lang.*" %>
-<%@ page import="impls.*" %>
 <%@ page import="org.hibernate.Session" %>
 <%@ page import="org.hibernate.Query" %>
 <%@ page import="org.hibernate.SessionFactory" %>
 <%@ page import="org.springframework.*" %>
-<%@ page import="entity.Product" %>
+<%@ page import="entity.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="no-js" lang="en">
     <head>
@@ -62,18 +60,17 @@ Class.forName("com.mysql.jdbc.Driver");
 Connection con=DriverManager.getConnection(
 		"jdbc:mysql://127.0.0.1:3306/bigproject?useUnicode=true&characterEncoding=UTF-8","root","");
 
-List<Product> list=new ArrayList<Product>();
-PreparedStatement pstm=con.prepareStatement("select * from product");
+List<User> list=new ArrayList<User>();
+PreparedStatement pstm=con.prepareStatement("select * from user");
 ResultSet rs=pstm.executeQuery();
 while(rs.next()){
-	Product p=new Product();
-	p.setId(rs.getInt(1));
-	p.setName(rs.getString(2));
-	p.setPrice(rs.getDouble(4));
-	p.setImg1(rs.getString(5));
-	p.setImg2(rs.getString(6));
-	p.setImg3(rs.getString(7));
+	if(rs.getBoolean(5)==true)
+	{continue;}else{
+	User p=new User();
+	p.setUserName(rs.getString(1));
+	p.setUserId(rs.getInt(4));
 	list.add(p);
+	}
 }
 con.close();
 request.setAttribute("list",list);
@@ -761,28 +758,7 @@ request.setAttribute("list",list);
                         </div>
                     </div>
                     <div class="col-md-9">
-                        <div class="bar">
-                            <p class="result_show">Showing 1–15 of 21 results</p>
-                            <div class="bar_box">
-                                <form action="#">
-                                    <select>
-                                        <option value="Default sorting">Default sorting</option>
-                                        <option value="Sort by popularity">Sort by popularity</option>
-                                        <option value="Sort by average rating">Sort by average rating</option>
-                                        <option value="Sort by newness">Sort by newness</option>
-                                        <option value="Sort by price: low to high">Sort by price: low to high</option>
-                                        <option value="Sort by price: low to low">Sort by price: low to low</option>
-                                    </select>
-                                </form>
-                            </div>
-                            <div class="right_area">
-                                <!-- Nav tabs -->
-                                <ul class="retabs" role="tablist">
-                                    <li role="presentation"><a href="#home" role="tab" data-toggle="tab"><i class="fa fa-th"> Grid</i></a></li>
-                                    
-                                </ul>
-                            </div>
-                        </div>
+                        
                         <div class="tab-content">
                         
                         <!-- 商品 -->
@@ -793,69 +769,28 @@ request.setAttribute("list",list);
                                     <div class="col-md-12">
                                         <div class="all-pros br-ntf">
                                             <div class="row">
-                                                <div class="col-md-4 col-sm-4 pl pr">
-                                                    <div class="sngl-pro">
-                                                        <div class="single_product single_product_2 single_product_3rd">
-                                                            <span>hot</span>
-                                                        </div>
-                                                        <div class="sinle_pic sngl-pc sinle_pic_2xd">
-                                                            <a href="#">
-                                                            <img class="primary-img" src="${p.getImg1() }" alt="" />
-                                                            <img class="secondary-img" src="${p.getImg2() }" alt="" />
-                                                            </a>
-                                                        </div>
-                                                        <div class="product-action" data-toggle="modal" data-target="#myModal">
-                                                            <button type="button" class="btn btn-info btn-lg quickview quickview_2" data-toggle="tooltip" title="Quickview">Quick View</button>   
-                                                        </div>
-                                                    </div>
+                                                <div class="col-md-4 col-sm-4 pl pr" style="width:95px;">
+
                                                 </div>
-                                                <div class="col-md-8 col-sm-8 pl pr">
-                                                    <div class="product_content product_content_nx">
+                                                <div class="col-md-8 col-sm-8 pl pr" >
+                                                    <div class="product_content product_content_nx" style="height:95px;">
                                                         <div class="usal_pro">
-                                                            <div class="product_name_2 product_name_3 prnm">
+                                                            <div class="product_name_2 product_name_3 prnm" >
                                                                 <h2>
-                                                                    <a href="#">${p.getName() }</a>
+                                                                    <a href="#" style="font-size:50px">${p.getUserName() }</a>
                                                                 </h2>
-                                                                <div class="pro_discrip">
-                                                                    <p>${p.getProTypeId() }</p>
-                                                                </div>
                                                             </div>
                                                             <div class="action actionmm">
-                                                                <div class="product_price product_price_tz">
-                                                                    <div class="price_rating">
-                                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                                        <a href="#">
-                                                                        <i class="fa fa-star"></i>
-                                                                        </a>
-                                                                        <a href="#">
-                                                                        <i class="fa fa-star"></i>
-                                                                        </a>
-                                                                        <a href="#">
-                                                                        <i class="fa fa-star"></i>
-                                                                        </a>
-                                                                        <a class="not-rated" href="#"><i class="fa fa-star-o" aria-hidden="true"></i>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
+                                                                
                                                                 <div class="price_box price_box_tz">
-                                                                    <span class="spical-price">${p.getPrice() }</span>
+                                                                	<span class="spical-price" style="font-size:15px;">UserId:</span>
+                                                                    <span class="spical-price" style="font-size:15px;">${p.getUserId() }</span>
                                                                 </div>
                                                                 <div class="last_button_area">
                                                                     <ul class="add-to-links clearfix">
                                                                         <li>
                                                                             <div class="new_act">
-                                                                                <a class="button_act button_act_2 button_act_hts" data-quick-id="45" href="" title="" data-toggle="tooltip" data-original-title="Donec non est at">Add to Cart</a>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li class="addwishlist">
-                                                                            <div class="yith-wcwl-add-button  show" >
-                                                                                <a class="add_to_wishlist_3 add_to_wishlist_tz" href="" rel="nofollow" data-product-id="45" data-product-type="external" data-toggle="tooltip" title="" data-original-title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li class="addcompare">
-                                                                            <div class="woocommerce product compare-button">
-                                                                                <a class="compare_3 compare_3r button" href="" data-product_id="45" rel="nofollow" data-toggle="tooltip" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
+                                                                                <a class="button_act button_act_2 button_act_hts" data-quick-id="45" href="deleteuser/${p.getUserId() }" title="" data-toggle="tooltip" data-original-title="Donec non est at">Delete User</a>
                                                                             </div>
                                                                         </li>
                                                                     </ul>
@@ -868,16 +803,14 @@ request.setAttribute("list",list);
                                         </div>
                                     </div>
                                 </div>
-                                <div>
-                                <td><a href="editProduct/${p.getId() }">修改</a>
-								<a href="deleteproduct/${p.getId() }">删除</a></td>
                                 </div>
                                 </form>
                             </c:forEach>
                        <!-- 商品结束 -->     
                             </div>
-                            <span><a href="productsedit.jsp">新增商品</a></span>
-                            <span><a href="userlist.jsp">用户列表</a></span>
+                            <div>
+                            <span><a href="listview.jsp">商品列表</a></span>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="navi_area">

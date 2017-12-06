@@ -67,6 +67,10 @@ while(rs.next()){
 	Product p=new Product();
 	p.setId(rs.getInt(1));
 	p.setName(rs.getString(2));
+	p.setPrice(rs.getDouble(4));
+	p.setImg1(rs.getString(5));
+	p.setImg2(rs.getString(6));
+	p.setImg3(rs.getString(7));
 	list.add(p);
 }
 con.close();
@@ -80,7 +84,7 @@ request.setAttribute("list",list);
 
 
         <!--header top area start-->
-        <div>你好呀，${user.getName() }</div>
+        <div>你好呀，${user.getUserName() }</div>
         <div class="header_area">
             <div class="header_border">
                 <div class="container">
@@ -809,7 +813,7 @@ request.setAttribute("list",list);
                                                         <div class="usal_pro">
                                                             <div class="product_name_2 product_name_3 prnm">
                                                                 <h2>
-                                                                    <a href="#">${p.getName() }</a>
+                                                                    <a href="productview/${p.getId() }">${p.getName() }</a>
                                                                 </h2>
                                                                 <div class="pro_discrip">
                                                                     <p>${p.getProTypeId() }</p>
@@ -874,7 +878,6 @@ request.setAttribute("list",list);
                             </c:forEach>
                        <!-- 商品结束 -->     
                             </div>
-                            <span><a href="productsedit.jsp">新增商品</a></span>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="navi_area">

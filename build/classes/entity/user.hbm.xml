@@ -10,6 +10,7 @@
 		<property name="userName" type="java.lang.String" column="username" length="20" />
 		<property name="password" type="java.lang.String" column="password" length="20" />
 		<property name="eMail" type="java.lang.String" column="email" length="20" />
+		<property name="admin" column="admin"/>
 		
 		<set name="productSet" table="CartInformation" inverse="false">
 		<key column="USERID"/>

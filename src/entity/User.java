@@ -17,6 +17,8 @@ public class User {
 	private String userName;
 	private String password;
 	private String eMail;
+	private Boolean admin;
+	
 	@Transient
 	private Set<Product> productSet = new HashSet<Product>();
 	
@@ -28,6 +30,12 @@ public class User {
 		this.password = password;
 		this.eMail = eMail;
 		this.productSet = pSet;
+	}
+	public Boolean getAdmin() {
+		return admin;
+	}
+	public void setAdmin(Boolean admin) {
+		this.admin = admin;
 	}
 
 	public Set<Product> getProductSet() {

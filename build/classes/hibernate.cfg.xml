@@ -19,5 +19,7 @@
 		<mapping resource="entity/user.hbm.xml" />
         <mapping resource="entity/product.hbm.xml" />
         <mapping resource="entity/address.hbm.xml" />
+        <mapping resource="entity/producttype.hbm.xml" />
+        <mapping resource="entity/cart.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

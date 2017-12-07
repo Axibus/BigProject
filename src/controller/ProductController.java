@@ -10,6 +10,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +25,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import entity.Product;
+import entity.ProductType;
 import entity.User;
 import impls.ProductServiceImpl;
 
@@ -29,6 +33,8 @@ import impls.ProductServiceImpl;
 public class ProductController {
 	@Resource
 	private ProductServiceImpl psi;
+	@Resource
+	private SessionFactory sessionFactory;
 	
 	//产品列表
 	@RequestMapping(value="productlist")
@@ -44,7 +50,8 @@ public class ProductController {
 				mAndView = new ModelAndView("forward:listviewforcustomer.jsp");
 			}
 		}else{
-			mAndView = new ModelAndView("forward:listviewforcustomer.jsp");
+			
+			mAndView = new ModelAndView("forward:loginfirst.jsp");
 		}
 		//mAndView.addObject("list",list);
 		return mAndView;
@@ -52,6 +59,23 @@ public class ProductController {
 	}
 	
 	//新增产品
+	@RequestMapping(value="productadd")
+	public ModelAndView productAdd(){
+		
+		List<ProductType> list = new ArrayList<ProductType>();
+		String hql = "from entity.ProductType";
+		Session session = sessionFactory.openSession();
+		Query query = session.createQuery(hql);
+		list = (List<ProductType>)query.list();
+		//for(Product p:list){
+		//	System.out.println(p.getName());
+		//}
+		session.flush();
+		session.close();
+		ModelAndView m = new ModelAndView("productsedit");
+		m.addObject("list",list);
+		return m;
+	}
 	@RequestMapping(value="/addproduct", method=RequestMethod.POST)
 	public ModelAndView addProduct(@RequestParam(value="name",required=false)String name,
 			@RequestParam(value="pid",required=false)int pid,

@@ -877,7 +877,7 @@ request.setAttribute("list",list);
                             </c:forEach>
                        <!-- 商品结束 -->     
                             </div>
-                            <span><a href="productsedit.jsp">新增商品</a></span>
+                            <span><a href="productadd">新增商品</a></span>
                             <span><a href="userlist.jsp">用户列表</a></span>
                             <div class="row">
                                 <div class="col-md-12">

@@ -451,7 +451,7 @@ request.setAttribute("list",list);
                                                     <ul>
                                                         <li><a href="index.html">Home</a></li>
 														<li><a href="about-us.html">About</a></li>
-														<li><a href="cart.html">Cart</a></li>
+														<li><a href="viewcart">Cart</a></li>
 														<li><a href="list-view.html">List</a></li>
 														<li><a href="my.account.html">Account</a></li>
 														<li><a href="simple-product.html">Product</a></li>

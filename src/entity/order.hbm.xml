@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="entity">
+	<class name="Order" table="ORDER">
+		<id name="id" column="id">
+			<generator class="increment"/>
+		</id>
+		<property name="userid" type="int" column="userid"  />
+		<property name="cartid" type="int" column="cartid"  />	
+		<property name="addressid" type="int" column="addressid" />
+		<property name="orderStatus" type="java.lang.String" column="orderstatus"  />
+	</class>	
+</hibernate-mapping>

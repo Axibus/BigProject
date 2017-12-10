@@ -550,18 +550,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <c:forEach items="cart" var="c">
+                                                <c:forEach items="${cart }" var="c">
                                                 <tr>
-                                                    <td class="product-remove product-remove_2"><a href="#">×</a></td>
+                                                    <td class="product-remove product-remove_2"><a href="deletecart">×</a></td>
                                                     <td class="product-thumbnail product-thumbnail-2"><a href="#"><img src="img/wishlist/pic-2.jpg" alt="" /></a></td>
-                                                    <td class="product-name"><a href="#"></a></td>
-                                                    <td class="product-price"><span class="amount-list amount-list-2">$300.00</span></td>
+                                                    <td class="product-name"><a href="#">${product.get(c.getId()).getName() }</a></td>
+                                                    <td class="product-price"><span class="amount-list amount-list-2">${product.get(c.getId()).getPrice() }</span></td>
                                                     <td class="product-stock-status">
-                                                        <div class="latest_es_from_2">
-                                                            <input type="number" value="1">
+                                                        <div class="latest_es_from_2" >
+                                                            <input type="text" name="count" value="${c.getCount() }"/>
                                                         </div>
+                                                       
                                                     </td>
-                                                    <td class="product-price"><span class="amount-list amount-list-2">$100.00</span></td>
+                                                    <td class="product-price"><span class="amount-list amount-list-2">${c.getCount()*product.get(c.getId()).getPrice() }</span></td>
                                                 </tr>
                                                 </c:forEach>
                                             </tbody>

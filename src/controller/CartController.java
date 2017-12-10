@@ -1,7 +1,9 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -44,21 +46,19 @@ public class CartController {
 		ModelAndView m = new ModelAndView("addcartok");
 		return m;
 	}
-	@RequestMapping()
+	@RequestMapping("viewcart")
 	public ModelAndView cartView(HttpSession session){
 		User u = (User) session.getAttribute("user");
 		List<Cart> cartlist = csi.findCartByUserId(u.getUserId());
-		
-		List<Product> productlist = new ArrayList<Product>();
-		
+		Map productmap = new HashMap();
 		for(Cart c:cartlist){
 			Product p = psi.findProductById(c.getProductId());
-			productlist.add(p);
+			productmap.put(c.getId(), p);
 		}
 		
 		ModelAndView m = new ModelAndView("cart");
 		m.addObject("cart",cartlist);
-		m.addObject("product",productlist);
+		m.addObject("product",productmap);
 		return m;
 	}
 	

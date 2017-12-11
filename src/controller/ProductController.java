@@ -24,10 +24,10 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 
+import Impls.ProductServiceImpl;
 import entity.Product;
 import entity.ProductType;
 import entity.User;
-import impls.ProductServiceImpl;
 
 @Controller
 public class ProductController {

@@ -1,7 +1,6 @@
 package Impls;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -13,22 +12,21 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import dao.CartDao;
-import entity.Cart;
-import entity.Product;
 
+import dao.OrderDao;
+import entity.Cart;
+import entity.Orders;
 
 
 @Repository
 @Transactional
-public class CartDaoImpl implements CartDao{
+public class OrderDaoImpl implements OrderDao{
 	
 	@Resource
 	private SessionFactory sessionFactory; 
-	
 
 	@Override
-	public void addCart(Cart c) {
+	public void addOrder(Orders c) {
 		Session session = null;
         Transaction tran = null;
 
@@ -50,26 +48,24 @@ public class CartDaoImpl implements CartDao{
 		
 	}
 
-
 	@Override
-	public Cart findCartById(int id) {
-		String hql = "from entity.Cart where id='"+id+"'";
+	public Orders findOrderById(int id) {
+		String hql = "from entity.Orders where id='"+id+"'";
 		Session session = sessionFactory.openSession();
 		Query query = session.createQuery(hql);
-		Cart c = (Cart)query.uniqueResult();
+		Orders c = (Orders)query.uniqueResult();
 		session.flush();
 		session.close();
 		return c;
 	}
 
-
 	@Override
-	public List findAllCart() {
-		List<Cart> list=new ArrayList<Cart>();
-		String hql = "from entity.Cart";
+	public List findAllOrder() {
+		List<Orders> list=new ArrayList<Orders>();
+		String hql = "from entity.Orders";
 		Session session = sessionFactory.openSession();
 		Query query = session.createQuery(hql);
-		list = (List<Cart>)query.list();
+		list = (List<Orders>)query.list();
 		//for(Product p:list){
 		//	System.out.println(p.getName());
 		//}
@@ -82,14 +78,13 @@ public class CartDaoImpl implements CartDao{
 		}
 	}
 
-
 	@Override
-	public List findCartByUserId(int id) {
-		List<Cart> list=new ArrayList<Cart>();
-		String hql = "from entity.Cart where userid='"+id+"'";
+	public List findOrderByUserId(int id) {
+		List<Orders> list=new ArrayList<Orders>();
+		String hql = "from entity.Orders where userid='"+id+"'";
 		Session session = sessionFactory.openSession();
 		Query query = session.createQuery(hql);
-		list = (List<Cart>)query.list();
+		list = (List<Orders>)query.list();
 		//for(Product p:list){
 		//	System.out.println(p.getName());
 		//}
@@ -99,13 +94,12 @@ public class CartDaoImpl implements CartDao{
 			return null;
 		}else{
 		return list;
-		}
+		}		
 	}
 
-
 	@Override
-	public Boolean deleteCart(int id) {
-		Cart p = this.findCartById(id);
+	public Boolean deleteOrder(int id) {
+		Orders p = this.findOrderById(id);
 		if(p!=null){
 			Session session = null;
 	        Transaction tran = null;
@@ -132,21 +126,19 @@ public class CartDaoImpl implements CartDao{
 		}
 	}
 
-
 	@Override
-	public Cart findCartByUserIdAndProductId(int uid, int pid) {
-		String hql = "from entity.Cart where userid='"+uid+"'"+"and productid='"+pid+"'";
+	public Orders findOrderByUserIdAndProductId(int uid, int pid) {
+		String hql = "from entity.Orders where userid='"+uid+"'"+"and productid='"+pid+"'";
 		Session session = sessionFactory.openSession();
 		Query query = session.createQuery(hql);
-		Cart c = (Cart)query.uniqueResult();
+		Orders c = (Orders)query.uniqueResult();
 		session.flush();
 		session.close();
 		return c;
 	}
 
-
 	@Override
-	public void updateCart(Cart c) {
+	public void updateOrder(Orders c) {
 		Session session = null;
         Transaction tran = null;
 
@@ -168,5 +160,6 @@ public class CartDaoImpl implements CartDao{
         }
 		
 	}
+		
+	}
 
-}

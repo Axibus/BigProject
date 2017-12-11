@@ -9,7 +9,7 @@
 			<generator class="increment"/>
 		</id>
 		<property name="userid" type="int" column="userid"  />
-		<property name="cartid" type="int" column="cartid"  />	
+		<property name="productid" type="int" column="productid"  />	
 		<property name="addressid" type="int" column="addressid" />
 		<property name="orderStatus" type="java.lang.String" column="orderstatus"  />
 	</class>	

@@ -4,19 +4,19 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Order {
+public class Orders {
 	@Id
 	private int id;
-	private int cartid;
+	private int productid;
 	private int userid;
 	private int addressid;
 	private String orderStatus;
 	
 	
-	public Order(){};
-	public Order(int id,int cartid,int userid, int addressid,String orderstatus){
+	public Orders(){};
+	public Orders(int id,int productid,int userid, int addressid,String orderstatus){
 		this.id = id;
-		this.cartid = cartid;
+		this.productid = productid;
 		this.userid = userid;
 		this.addressid = addressid;
 		this.orderStatus = orderstatus;
@@ -32,11 +32,12 @@ public class Order {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getCartid() {
-		return cartid;
+	
+	public int getProductid() {
+		return productid;
 	}
-	public void setCartid(int cartid) {
-		this.cartid = cartid;
+	public void setProductid(int productid) {
+		this.productid = productid;
 	}
 	public int getUserid() {
 		return userid;

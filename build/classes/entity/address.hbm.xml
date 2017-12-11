@@ -9,7 +9,7 @@
 		</id>
 		<property name="address" type="java.lang.String" column="address" length="50" />
 		
-		<many-to-one name = "user" class = "entity.User" fetch = "select " >
+		<many-to-one name = "user" class = "entity.User" column="userid" >
             <column name = "USERID"/>
 		</many-to-one>
 	

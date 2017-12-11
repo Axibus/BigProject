@@ -547,27 +547,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                     <th class="product-price"><span class="nobr"> Price </span></th>
                                                     <th class="product-stock-stauts"><span class="nobr"> Quantity </span></th>
                                                     <th class="product-add-to-cart"><span class="nobr">Total</span></th>
-                                                    <th class="product-add-to-cart"><span class="nobr">update</span></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <c:forEach items="${cart }" var="c">
+                                            <!-- 订单开始 -->
+                                                <c:forEach items="${order }" var="o">
                                                 <tr>
                                                     <td class="product-remove product-remove_2"><a href="deletecart">×</a></td>
                                                     <td class="product-thumbnail product-thumbnail-2"><a href="#"><img src="img/wishlist/pic-2.jpg" alt="" /></a></td>
-                                                    <td class="product-name"><a href="#">${product.get(c.getId()).getName() }</a></td>
-                                                    <td class="product-price"><span class="amount-list amount-list-2">${product.get(c.getId()).getPrice() }</span></td>
-                                                    <td class="product-stock-status">
-                                                        <div class="latest_es_from_2" >
-                                                            <input type="text" name="count" value="${c.getCount() }"/>
-                                                        </div>
-                                                       
-                                                    </td>
-                                                    <td class="product-price"><span class="amount-list amount-list-2">${c.getCount()*product.get(c.getId()).getPrice() }</span></td>
-                                                    <td class="product-name">
-                                                    	<a class="button_act btn-tip " href="addOrder/${c.getId() }">Update cart</a>
-                                                       
-                                                    </td>
+                                                    <td class="product-name"><a href="#">${product.get(o.getId()).getName() }</a></td>
+                                                    <td class="product-price"><span class="amount-list amount-list-2">${product.get(o.getId()).getPrice() }</span></td>
+
+                                                    
+                                                    <td class="product-price"><span class="amount-list amount-list-2">${o.getOrderStatus() }</span></td>
                                                 </tr>
                                                 </c:forEach>
                                             </tbody>
@@ -578,7 +570,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                             <label for="coupon_code"></label>
                                                             <input id="coupon_code" class="input-text" type="text" placeholder="Coupon code" value="" name="coupon_code">
                                                             <a class="button_act button_act_3 button_act_333 button_act_tp " href="#">apply coupon</a>
-                                                            <a class="button_act btn-tip " href="addOrder/${c.getId() }">Update cart</a>
+                                                            
                                                         </div>
                                                     </td>
                                                 </tr>

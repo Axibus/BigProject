@@ -16,6 +16,7 @@
                                         <label>
                                         Product:${p.getName() }
                                         <input type="hidden" name="pid" value="${p.getId() }">
+                                        
                                         </label>
                                     </p>
                                     <p>
@@ -40,7 +41,7 @@
                                         </c:forEach>
                                         </select>
                                     </p>
-                                    <input type="hidden" name="field＿name" value="value">
+                                    
                                 </div>
                                 <div class="form-action">
                                     <input type="submit"/>

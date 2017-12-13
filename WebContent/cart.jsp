@@ -532,6 +532,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                     </div>
                 </div>
+                <span><a href="deleteallcart">清空购物车</a></span>
                 <div class="row">
                     <div class="all_wis_frm">
                         <div class="col-md-12">
@@ -553,8 +554,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                             <tbody>
                                                 <c:forEach items="${cart }" var="c">
                                                 <tr>
-                                                    <td class="product-remove product-remove_2"><a href="deletecart">×</a></td>
-                                                    <td class="product-thumbnail product-thumbnail-2"><a href="#"><img src="img/wishlist/pic-2.jpg" alt="" /></a></td>
+                                                    <td class="product-remove product-remove_2"><a href="deletecart/${c.getId() }">×</a></td>
+                                                    <td class="product-thumbnail product-thumbnail-2"><a href="#"><img src="${product.get(c.getId()).getImg1() }" alt="" /></a></td>
                                                     <td class="product-name"><a href="#">${product.get(c.getId()).getName() }</a></td>
                                                     <td class="product-price"><span class="amount-list amount-list-2">${product.get(c.getId()).getPrice() }</span></td>
                                                     <td class="product-stock-status">

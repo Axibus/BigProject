@@ -11,15 +11,22 @@ public class Orders {
 	private int userid;
 	private int addressid;
 	private String orderStatus;
+	private int count;
 	
-	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	public Orders(){};
-	public Orders(int id,int productid,int userid, int addressid,String orderstatus){
+	public Orders(int id,int productid,int userid, int addressid,String orderstatus,int count){
 		this.id = id;
 		this.productid = productid;
 		this.userid = userid;
 		this.addressid = addressid;
 		this.orderStatus = orderstatus;
+		this.count = count;
 	};
 	
 	

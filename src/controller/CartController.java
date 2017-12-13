@@ -50,16 +50,48 @@ public class CartController {
 	public ModelAndView cartView(HttpSession session){
 		User u = (User) session.getAttribute("user");
 		List<Cart> cartlist = csi.findCartByUserId(u.getUserId());
-		Map productmap = new HashMap();
-		for(Cart c:cartlist){
-			Product p = psi.findProductById(c.getProductId());
-			productmap.put(c.getId(), p);
-		}
-		
 		ModelAndView m = new ModelAndView("cart");
-		m.addObject("cart",cartlist);
-		m.addObject("product",productmap);
+		if(cartlist!=null){
+			
+			Map productmap = new HashMap();
+			for(Cart c:cartlist){
+				Product p = psi.findProductById(c.getProductId());
+				productmap.put(c.getId(), p);
+			}
+			
+			
+			m.addObject("cart",cartlist);
+			m.addObject("product",productmap);
+			return m;
+		}else{
+			return m;
+		}
+	}
+	
+	@RequestMapping("deletecart/{cid}")
+	public ModelAndView deleteCart(@PathVariable int cid){
+		csi.deleteCart(cid);
+		ModelAndView m = new ModelAndView("redirect:/viewcart");
 		return m;
 	}
 	
+	@RequestMapping("deleteallcart")
+	public ModelAndView deleteAllCart(HttpSession session){
+		User u = (User)session.getAttribute("user");
+		List<Cart> cart =csi.findCartByUserId(u.getUserId());
+		for(Cart c:cart){
+			csi.deleteCart(c.getId());
+		}
+		
+		ModelAndView m = new ModelAndView("redirect:/viewcart"); 
+		return m;
+		
+	}
 }
+		
+
+	
+	
+	
+	
+

@@ -1,4 +1,4 @@
-<%@page import="impls.ProductServiceImpl"%>
+<%@page import="Impls.ProductServiceImpl"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -7,7 +7,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="java.lang.*" %>
-<%@ page import="impls.*" %>
+<%@ page import="Impls.*" %>
 <%@ page import="org.hibernate.Session" %>
 <%@ page import="org.hibernate.Query" %>
 <%@ page import="org.hibernate.SessionFactory" %>
@@ -879,6 +879,7 @@ request.setAttribute("list",list);
                             </div>
                             <span><a href="productadd">新增商品</a></span>
                             <span><a href="userlist.jsp">用户列表</a></span>
+                            <span><a href="adminorders">订单详查</a></span>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="navi_area">

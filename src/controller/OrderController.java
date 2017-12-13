@@ -21,6 +21,7 @@ import Impls.AddressServiceImpl;
 import Impls.CartServiceImpl;
 import Impls.OrderServiceImpl;
 import Impls.ProductServiceImpl;
+import Impls.UserServiceImpl;
 import entity.Address;
 import entity.Cart;
 import entity.Orders;
@@ -32,6 +33,8 @@ import entity.User;
 public class OrderController {
 	@Resource
 	private OrderServiceImpl osi;
+	@Resource
+	private UserServiceImpl usi;
 	@Resource
 	private AddressServiceImpl asi;
 	@Resource
@@ -75,6 +78,7 @@ public class OrderController {
 		Address a = asi.findAddressById(aid);
 		
 		osi.addOrder(a, c);
+		csi.deleteCart(c.getId());
 		ModelAndView m = new ModelAndView("orderview");
 		List<Orders> orderlist = osi.findOrderByUserId(u.getUserId());
 		Map productmap = new HashMap();
@@ -88,6 +92,103 @@ public class OrderController {
 		return m;
 		
 	}
-
+	@RequestMapping("cancelorder/{oid}")
+	public ModelAndView cancelOrder(@PathVariable int oid,HttpSession session){
+		Orders o = osi.findOrderById(oid);
+		o.setOrderStatus("订单已取消");
+		osi.updateOrder(o);
+		ModelAndView m = new ModelAndView("orderview");
+		
+		User u = (User)session.getAttribute("user");
+		
+		List<Orders> orderlist = osi.findOrderByUserId(u.getUserId());
+		Map productmap = new HashMap();
+		for(Orders order:orderlist){
+			Product p = psi.findProductById(order.getProductid());
+			productmap.put(order.getId(), p);
+		}
+		m.addObject("p",productmap);
+		m.addObject("order",orderlist);
+		return m ;
+		
+		
+	}
+	
+	@RequestMapping("deleteorder/{oid}")
+	public ModelAndView deleteOrder(@PathVariable int oid,HttpSession session){
+		User u = (User)session.getAttribute("user");
+		osi.deleteOrder(oid);	
+		ModelAndView m = new ModelAndView("orderview");
+		List<Orders> orderlist = osi.findOrderByUserId(u.getUserId());
+		Map productmap = new HashMap();
+		if(orderlist!=null){
+			for(Orders order:orderlist){
+				Product p = psi.findProductById(order.getProductid());
+				productmap.put(order.getId(), p);
+			}
+			m.addObject("p",productmap);
+			m.addObject("order",orderlist);
+			System.out.println("用户"+u.getUserName()+"删除了id为"+oid+"的订单。");
+			return m ;
+		}else{
+			System.out.println("用户"+u.getUserName()+"删除了id为"+oid+"的订单。");
+			return m;
+		}
+		
+		
+	}
+	@RequestMapping("adminorders")
+	public ModelAndView adminOrders(){
+		ModelAndView m = new ModelAndView("adminorders");
+		
+		
+		List<Orders> orderlist = osi.findAllOrder();
+		if(orderlist!=null){
+			Map productmap = new HashMap();
+			Map usermap = new HashMap();
+			for(Orders order:orderlist){
+				User u = usi.findUserById(order.getUserid());
+				usermap.put(order.getId(), u);
+				Product p = psi.findProductById(order.getProductid());
+				productmap.put(order.getId(), p);
+			}
+			m.addObject("u",usermap);
+			m.addObject("p",productmap);
+			m.addObject("order",orderlist);
+			return m ;
+		}else{
+			return m;
+		}
+		
+	}
+	@RequestMapping("searchorder")
+	public ModelAndView searchOrder(@RequestParam(value="uid",required=false)int uid,@RequestParam(value="pid",required=false)int pid){
+		List o = osi.findOrderByUserIdAndProductId(uid, pid);
+		Product p = psi.findProductById(pid);
+		ModelAndView m = new ModelAndView("ordersearchresult");
+		m.addObject("o",o);
+		m.addObject("p",p);
+		return m ;
+		
+	}
+	@RequestMapping("vieworder")
+	public ModelAndView viewOrder(HttpSession session){
+		User u = (User)session.getAttribute("user");
+		
+		ModelAndView m = new ModelAndView("orderview");
+		List<Orders> orderlist = osi.findOrderByUserId(u.getUserId());
+		Map productmap = new HashMap();
+		for(Orders o:orderlist){
+			Product p = psi.findProductById(o.getProductid());
+			productmap.put(o.getId(), p);
+		}
+		m.addObject("u",u);
+		m.addObject("p",productmap);
+		m.addObject("order",orderlist);
+		
+		return m;
+		
+		
+	}
 	
 }

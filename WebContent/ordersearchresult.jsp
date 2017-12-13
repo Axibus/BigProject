@@ -551,17 +551,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                             </thead>
                                             <tbody>
                                             <!-- 订单开始 -->
-                                                <c:forEach items="${order }" var="o">
+                                            	
+                                                <c:forEach items="${o }" var="o">
                                                 <tr>
-                                                    <td class="product-remove product-remove_2"><a href="deletecart">×</a></td>
-                                                    <td class="product-thumbnail product-thumbnail-2"><a href="#"><img src="${p.get(o.getId()).getImg1() }" alt="" /></a></td>
-                                                    <td class="product-name"><a href="#">${p.get(o.getId()).getName() }</a></td>
-                                                    <td class="product-price"><span class="amount-list amount-list-2">${p.get(o.getId()).getPrice()*o.getCount() }</span></td>
+                                                	<td class="product-price"><span class="amount-list amount-list-2">${u.getUserName() }</span></td>
+                                                    <td class="product-price"><span class="amount-list amount-list-2">${u.getUserId() }</span></td>
+                                                    <td class="product-remove product-remove_2"><span >×</span></td>
+                                                    <td class="product-thumbnail product-thumbnail-2"><a href="#"><img src="${p.getImg1() }" alt="" /></a></td>
+                                                    <td class="product-name"><a href="#">${p.getName() }</a></td>
+                                                    <td class="product-price"><span class="amount-list amount-list-2">${p.getPrice()*o.getCount() }</span></td>
                                                     <td class="product-price"><span class="amount-list amount-list-2">${o.getOrderStatus() }</span></td>
-                                                    <td class="product-price"><a href="cancelorder/${o.getId() }" class="amount-list amount-list-2">取消订单</a></td>
-                                                    <td class="product-price"><a href="deleteorder/${o.getId() }" class="amount-list amount-list-2">删除订单</a></td>
                                                 </tr>
                                                 </c:forEach>
+                                                <tr>
+                                                <span><a href="adminorders">返回订单列表</a></span>
+                                                </tr>
+                                                
                                             </tbody>
                                             <tfoot>
                                                 <tr>

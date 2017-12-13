@@ -30,6 +30,7 @@ public class OrderServiceImpl implements OrderService{
 		o.setAddressid(a.getId());
 		o.setUserid(c.getUserId());
 		o.setProductid(c.getProductId());
+		o.setCount(c.getCount());
 		o.setOrderStatus("订单已生成");
 		odi.addOrder(o);
 	}
@@ -58,7 +59,7 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public Orders findOrderByUserIdAndProductId(int uid, int pid) {
+	public List findOrderByUserIdAndProductId(int uid, int pid) {
 		
 		return odi.findOrderByUserIdAndProductId(uid, pid);
 	}

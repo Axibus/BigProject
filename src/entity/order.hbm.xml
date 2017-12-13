@@ -4,7 +4,7 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="entity">
-	<class name="Order" table="ORDER">
+	<class name="Orders" table="ORDER">
 		<id name="id" column="id">
 			<generator class="increment"/>
 		</id>
@@ -12,5 +12,6 @@
 		<property name="productid" type="int" column="productid"  />	
 		<property name="addressid" type="int" column="addressid" />
 		<property name="orderStatus" type="java.lang.String" column="orderstatus"  />
+		<property name="count" type="int" column="count" />
 	</class>	
 </hibernate-mapping>

@@ -16,7 +16,7 @@ public interface OrderService {
 	public List findAllOrder();
 	public List findOrderByUserId(int id);
 	public Boolean deleteOrder(int id);
-	public Orders findOrderByUserIdAndProductId(int uid,int pid);
+	public List findOrderByUserIdAndProductId(int uid,int pid);
 	public void updateOrder(Orders c);
 
 }

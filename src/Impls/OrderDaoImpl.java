@@ -127,11 +127,11 @@ public class OrderDaoImpl implements OrderDao{
 	}
 
 	@Override
-	public Orders findOrderByUserIdAndProductId(int uid, int pid) {
+	public List findOrderByUserIdAndProductId(int uid, int pid) {
 		String hql = "from entity.Orders where userid='"+uid+"'"+"and productid='"+pid+"'";
 		Session session = sessionFactory.openSession();
 		Query query = session.createQuery(hql);
-		Orders c = (Orders)query.uniqueResult();
+		List<Orders> c = query.list();
 		session.flush();
 		session.close();
 		return c;
@@ -160,6 +160,8 @@ public class OrderDaoImpl implements OrderDao{
         }
 		
 	}
+
+	
 		
 	}
 

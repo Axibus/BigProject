@@ -44,6 +44,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
+    
+    
 
         <!--header top area start-->
         <div class="header_area">
@@ -522,6 +524,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
             </div>
         </div>
+        
+        
+                                    
+                                    
+        
         <!-- shop area end-->
         <div class="shopping_cart">
             <div class="container">
@@ -532,12 +539,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                     </div>
                 </div>
+                <div>
+                <form action="searchorder" method="post">
+                     <p>Search Order By userid and productid</p>
+                     <input type="text" name = "uid"/>
+                     <input type="text" name = "pid"/>
+                     <!-- a href = "searchorder"><input type="button" value="search"></a-->
+                     <input type="submit" value="search"/>
+                </form>                   
+                </div>
+                
                 <div class="row">
                     <div class="all_wis_frm">
                         <div class="col-md-12">
                             <div class="wishlist-content wishlist-content-2">
                                 <form action="#">
                                     <div class="wishlist-table wishlist-table-2 table-responsive">
+                                    
+                                    			
                                         <table>
                                             <thead>
                                                 <tr>
@@ -549,20 +568,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                     <th class="product-add-to-cart"><span class="nobr">Total</span></th>
                                                 </tr>
                                             </thead>
+                                            
+                                            
+                                            
                                             <tbody>
                                             <!-- 订单开始 -->
+                                            
+                                            	
+                                            
                                                 <c:forEach items="${order }" var="o">
                                                 <tr>
-                                                    <td class="product-remove product-remove_2"><a href="deletecart">×</a></td>
+                                                	<td class="product-price"><span class="amount-list amount-list-2">${u.get(o.getId()).getUserName() }</span></td>
+                                                    <td class="product-price"><span class="amount-list amount-list-2">${u.get(o.getId()).getUserId() }</span></td>
+                                                    <td class="product-remove product-remove_2"><span >×</span></td>
                                                     <td class="product-thumbnail product-thumbnail-2"><a href="#"><img src="${p.get(o.getId()).getImg1() }" alt="" /></a></td>
                                                     <td class="product-name"><a href="#">${p.get(o.getId()).getName() }</a></td>
                                                     <td class="product-price"><span class="amount-list amount-list-2">${p.get(o.getId()).getPrice()*o.getCount() }</span></td>
                                                     <td class="product-price"><span class="amount-list amount-list-2">${o.getOrderStatus() }</span></td>
-                                                    <td class="product-price"><a href="cancelorder/${o.getId() }" class="amount-list amount-list-2">取消订单</a></td>
-                                                    <td class="product-price"><a href="deleteorder/${o.getId() }" class="amount-list amount-list-2">删除订单</a></td>
+                                                    
                                                 </tr>
                                                 </c:forEach>
+                                                
                                             </tbody>
+                                            
                                             <tfoot>
                                                 <tr>
                                                     <td colspan="6">

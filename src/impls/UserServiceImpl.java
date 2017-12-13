@@ -29,6 +29,13 @@ public class UserServiceImpl implements UserService{
 		udi.deleteUser(id);
 		
 	}
+
+	@Override
+	public User findUserById(int id) {
+		
+		return udi.findUserById(id);
+	}
+	
 	
 
 }

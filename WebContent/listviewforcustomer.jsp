@@ -55,13 +55,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <body>
 
 <%
-
+String ordermethod=(String)request.getAttribute("m");
+System.out.println(ordermethod);
 Class.forName("com.mysql.jdbc.Driver");
 Connection con=DriverManager.getConnection(
 		"jdbc:mysql://127.0.0.1:3306/bigproject?useUnicode=true&characterEncoding=UTF-8","root","");
 
 List<Product> list=new ArrayList<Product>();
-PreparedStatement pstm=con.prepareStatement("select * from product");
+PreparedStatement pstm=con.prepareStatement("select * from product order by "+ordermethod);
 ResultSet rs=pstm.executeQuery();
 while(rs.next()){
 	Product p=new Product();
@@ -768,16 +769,11 @@ request.setAttribute("list",list);
                         <div class="bar">
                             <p class="result_show">Showing 1–15 of 21 results</p>
                             <div class="bar_box">
-                                <form action="#">
-                                    <select>
-                                        <option value="Default sorting">Default sorting</option>
-                                        <option value="Sort by popularity">Sort by popularity</option>
-                                        <option value="Sort by average rating">Sort by average rating</option>
-                                        <option value="Sort by newness">Sort by newness</option>
-                                        <option value="Sort by price: low to high">Sort by price: low to high</option>
-                                        <option value="Sort by price: low to low">Sort by price: low to low</option>
-                                    </select>
-                                </form>
+                               <span><a href="selectproduct/id">热门商品</a></span>	
+                               <span><a href="selectproduct/id">最新商品</a></span>	
+                               <span><a href="selectproduct/id desc">最热商品</a></span>	
+                               <p>按分类：</p>
+                               
                             </div>
                             <div class="right_area">
                                 <!-- Nav tabs -->

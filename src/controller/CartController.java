@@ -63,8 +63,6 @@ public class CartController {
 				Product p = psi.findProductById(c.getProductId());
 				productmap.put(c.getId(), p);
 			}
-			
-			
 			m.addObject("cart",cartlist);
 			m.addObject("product",productmap);
 			return m;

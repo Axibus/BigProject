@@ -55,14 +55,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <body>
 
 <%
+String st = (String)request.getAttribute("pt");
+String selecttype="";
+if(st==null){
+	selecttype="";
+}else{
+	selecttype=st;
+	
+}
 String ordermethod=(String)request.getAttribute("m");
+System.out.println(selecttype);
 System.out.println(ordermethod);
 Class.forName("com.mysql.jdbc.Driver");
 Connection con=DriverManager.getConnection(
 		"jdbc:mysql://127.0.0.1:3306/bigproject?useUnicode=true&characterEncoding=UTF-8","root","");
 
 List<Product> list=new ArrayList<Product>();
-PreparedStatement pstm=con.prepareStatement("select * from product order by "+ordermethod);
+PreparedStatement pstm=con.prepareStatement("select * from product"+selecttype+" order by "+ordermethod);
 ResultSet rs=pstm.executeQuery();
 while(rs.next()){
 	Product p=new Product();
@@ -450,13 +459,11 @@ request.setAttribute("list",list);
                                             <div class="menu">
                                                 <nav>
                                                     <ul>
-                                                        <li><a href="index.html">Home</a></li>
-														<li><a href="about-us.html">About</a></li>
+                                                        <li><a href="index">Home</a></li>
+														<li><a href="vieworder">ViewOrder</a></li>
 														<li><a href="viewcart">Cart</a></li>
-														<li><a href="list-view.html">List</a></li>
-														<li><a href="my.account.html">Account</a></li>
-														<li><a href="simple-product.html">Product</a></li>
-														<li><a href="contact-us.html">Contact us</a></li>
+														<li><a href="productlist">List</a></li>
+														<li><a href="account">Account</a></li>
                                                     </ul>
                                                 </nav>
                                             </div>
@@ -478,13 +485,11 @@ request.setAttribute("list",list);
                         <div class="mobile-menu">
                             <nav id="mobile-menu-active">
                                 <ul id="nav">
-                                    <li><a href="index.html">Home</a></li>
-									<li><a href="about-us.html">About</a></li>
-									<li><a href="cart.html">Cart</a></li>
-									<li><a href="list-view.html">List</a></li>
-									<li><a href="my.account.html">Account</a></li>
-									<li><a href="simple-product.html">Product</a></li>
-									<li><a href="contact-us.html">Contact us</a></li>
+                                    <li><a href="index">Home</a></li>
+														<li><a href="vieworder">ViewOrder</a></li>
+														<li><a href="viewcart">Cart</a></li>
+														<li><a href="productlist">List</a></li>
+														<li><a href="account">Account</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -773,6 +778,24 @@ request.setAttribute("list",list);
                                <span><a href="selectproduct/id">最新商品</a></span>	
                                <span><a href="selectproduct/id desc">最热商品</a></span>	
                                <p>按分类：</p>
+                               <form id="myform" action="selectprotype" method="post">
+                               
+                               <select name="pid" onchange="submitForm()">
+                               			<option >请选择</option>
+                               			<c:forEach items="${typelist }" var="pt">
+                                        	<option value="${pt.getId() }">${pt.getType() }</option>
+                                        </c:forEach>
+                               </select>
+                               
+                               </form>
+                               <script>
+                               
+                               function submitForm(){
+                            	   var form= document.getElementById("myform");
+                            	   form.submit();
+                               }
+                               
+                               </script>
                                
                             </div>
                             <div class="right_area">

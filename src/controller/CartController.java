@@ -53,9 +53,14 @@ public class CartController {
 	}
 	@RequestMapping("viewcart")
 	public ModelAndView cartView(HttpSession session){
+		ModelAndView m;
 		User u = (User) session.getAttribute("user");
+		if(u==null){
+			m = new ModelAndView("loginfirst");
+			return m;
+		}else{
 		List<Cart> cartlist = csi.findCartByUserId(u.getUserId());
-		ModelAndView m = new ModelAndView("cart");
+		m = new ModelAndView("cart");
 		if(cartlist!=null){
 			
 			Map productmap = new HashMap();
@@ -69,6 +74,7 @@ public class CartController {
 		}else{
 			return m;
 		}
+	}
 	}
 	
 	@RequestMapping("deletecart/{cid}")

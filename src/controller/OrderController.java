@@ -174,8 +174,12 @@ public class OrderController {
 	@RequestMapping("vieworder")
 	public ModelAndView viewOrder(HttpSession session){
 		User u = (User)session.getAttribute("user");
-		
-		ModelAndView m = new ModelAndView("orderview");
+		ModelAndView m;
+		if(u==null){
+			m= new ModelAndView("loginfirst");
+			return m;
+		}else{
+		m = new ModelAndView("orderview");
 		List<Orders> orderlist = osi.findOrderByUserId(u.getUserId());
 		Map productmap = new HashMap();
 		for(Orders o:orderlist){
@@ -187,6 +191,7 @@ public class OrderController {
 		m.addObject("order",orderlist);
 		
 		return m;
+		}
 		
 		
 	}

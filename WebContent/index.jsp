@@ -391,12 +391,11 @@
                                                 <nav>
                                                     <ul>
                                                         <li><a href="index">Home</a></li>
-														<li><a href="about-us.html">About</a></li>
-														<li><a href="cart.html">Cart</a></li>
+														<li><a href="vieworder">ViewOrder</a></li>
+														<li><a href="viewcart">Cart</a></li>
 														<li><a href="productlist">List</a></li>
 														<li><a href="account">Account</a></li>
-														<li><a href="simple-product.html">Product</a></li>
-														<li><a href="contact-us.html">Contact us</a></li>
+														
                                                     </ul>
                                                 </nav>
                                             </div>
@@ -417,13 +416,10 @@
                         <div class="mobile-menu">
                             <nav id="mobile-menu-active">
                                 <ul id="nav">
-                                    <li><a href="index.html">Home</a></li>
-									<li><a href="about-us.html">About</a></li>
-									<li><a href="cart.html">Cart</a></li>
-									<li><a href="list-view.html">List</a></li>
-									<li><a href="my.account.html">Account</a></li>
-									<li><a href="simple-product.html">Product</a></li>
-									<li><a href="contact-us.html">Contact us</a></li>
+                                    <li><a href="index">Home</a></li>
+									<li><a href="viewcart">Cart</a></li>
+									<li><a href="productlist">List</a></li>
+									<li><a href="myaccount">Account</a></li>
                                 </ul>
                             </nav>
                         </div>

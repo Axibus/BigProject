@@ -41,20 +41,37 @@ public class ProductController {
 	public ModelAndView productList(HttpSession httpSession){
 		//List<Product> list = new ArrayList<Product>();
 		//list=psi.findAllProduct();
-		ModelAndView mAndView;
+		ModelAndView m ;
 		User u =(User) httpSession.getAttribute("user");
 		if(u!=null){
 			if(u.getAdmin()!=null){
-				mAndView = new ModelAndView("forward:listview.jsp");
+				m = new ModelAndView("forward:listview.jsp");
 			}else{
-				mAndView = new ModelAndView("forward:listviewforcustomer.jsp");
+				
+				m = new ModelAndView("forward:listviewforcustomer.jsp");
+				List<ProductType> typelist = new ArrayList<ProductType>();
+				String hql = "from entity.ProductType";
+				Session session = sessionFactory.openSession();
+				Query query = session.createQuery(hql);
+				typelist = (List<ProductType>)query.list();
+				//for(Product p:list){
+				//	System.out.println(p.getName());
+				//}
+				session.flush();
+				session.close();
+				m.addObject("typelist",typelist);
+				
+				
+				
+				
+				
 			}
 		}else{
 			
-			mAndView = new ModelAndView("forward:loginfirst.jsp");
+			m = new ModelAndView("forward:loginfirst.jsp");
 		}
-		//mAndView.addObject("list",list);
-		return mAndView;
+		
+		return m;
 		
 	}
 	

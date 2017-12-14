@@ -532,13 +532,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                     </div>
                 </div>
+                 <form action="deletpartcart" method="post">
                 <span><a href="deleteallcart">清空购物车</a></span>
                 <div class="row">
                     <div class="all_wis_frm">
                         <div class="col-md-12">
                             <div class="wishlist-content wishlist-content-2">
-                                <form action="#">
+                                
                                     <div class="wishlist-table wishlist-table-2 table-responsive">
+                                    
+                                    
+                                    
+                                    
+                                    <script>
+                                    
+                                    
+                                   // function delEdu(){         
+                                     //   var obj=document.getElementsByName('isSelect');
+                                       // var s1="Select:";
+                                       // var ids= '';            
+                                        //for(var i=0; i<obj.length; i++){
+                                         //   if(obj[i].checked) ids=ids+obj[i].value+","; //如果选中，将value添加到变量s中
+                                        //}  
+                                        //if(ids==''){                    alert("Please choose one!");
+                                        //}
+                                             
+                                        //else{   ids="{"+ids+"}";               
+                                         //       $.get("deletepartcart?ids="+ids);
+                                        //}  
+                                    //}
+                                    
+                                    
+                                    
+                                    </script>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                   
                                         <table>
                                             <thead>
                                                 <tr>
@@ -552,8 +584,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                            	
                                                 <c:forEach items="${cart }" var="c">
                                                 <tr>
+                                                	<td class="product-remove product-remove_2"><input type='checkbox' name='delcart' value="${c.getId() }" ></input></td>
                                                     <td class="product-remove product-remove_2"><a href="deletecart/${c.getId() }">×</a></td>
                                                     <td class="product-thumbnail product-thumbnail-2"><a href="#"><img src="${product.get(c.getId()).getImg1() }" alt="" /></a></td>
                                                     <td class="product-name"><a href="#">${product.get(c.getId()).getName() }</a></td>
@@ -571,20 +605,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                     </td>
                                                 </tr>
                                                 </c:forEach>
+                                                
                                             </tbody>
                                             <tfoot>
                                                 <tr>
                                                     <td colspan="6">
                                                         <div class="coupon">
                                                             <label for="coupon_code"></label>
-                                                            <input id="coupon_code" class="input-text" type="text" placeholder="Coupon code" value="" name="coupon_code">
-                                                            <a class="button_act button_act_3 button_act_333 button_act_tp " href="#">apply coupon</a>
-                                                            <a class="button_act btn-tip " href="addOrder/${c.getId() }">Update cart</a>
+                                                           <!-- input type="button"  onclick="delEdu()" value="删除所选" style="color:#95a5a6;  border-radius:5px; vertical-align:middle;height:30px;  width:60px; "/-->
+                                                           
                                                         </div>
                                                     </td>
                                                 </tr>
                                             </tfoot>
                                         </table>
+                                        <input type="submit" value="删除所选"/>
+                                        
                                     </div>
                                 </form>
                                 <div class="row">

@@ -53,5 +53,9 @@ public class CartServiceImpl implements CartService{
 		c.setCount(count);
 		cdi.updateCart(c);
 	}
+	@Override
+	public List findCartByIds(int[] ids) {
+		return cdi.findCartByIds(ids);
+	}
 
 }

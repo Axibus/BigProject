@@ -12,4 +12,5 @@ public interface CartService {
 	public Boolean deleteCart(int id);
 	public Cart findCartByUserIdAndProductId(int uid,int pid);
 	public void updateCart(Cart c,int count);
+	public List findCartByIds(int[] ids);
 }

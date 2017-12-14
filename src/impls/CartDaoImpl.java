@@ -169,4 +169,15 @@ public class CartDaoImpl implements CartDao{
 		
 	}
 
+
+	@Override
+	public List findCartByIds(int[] ids) {
+		List<Cart> cartlist = new ArrayList<Cart>();
+		for(int i:ids){
+			Cart c = this.findCartById(i);
+			cartlist.add(c);
+		}
+		return cartlist;
+	}
+
 }

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page isELIgnored ="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,8 +11,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";  
 %> 
 <base href="<%=basePath%>"> 
-<meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
+ <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Shopping-Cart</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,10 +38,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <link rel="stylesheet" href="css/responsive.css">
         <!-- modernizr js -->
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-<title>registok</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
-	<!--header top area start-->
+
+<!--header top area start-->
         <div><p>欢迎你，${user.getUserName() }</p></div>
         <div class="header_area">
             <div class="header_border">
@@ -410,18 +414,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
             </div>
         </div>
-	<div style="height:200px;text-align:center;margin:0 auto;">
-	
-	
-	
-	
-	<form action="orderadd" method="post" enctype="multipart/form-data">
+	<div style="height:500px;text-align:center;margin:0 auto;">
+
+							<form action="orderadd" method="post" enctype="multipart/form-data">
                                 <div class="al_form-fields">
                                 	<p>
                                         <label>
                                         Product:${p.getName() }
                                         <input type="hidden" name="pid" value="${p.getId() }">
-                                        
                                         </label>
                                     </p>
                                     <p>
@@ -446,7 +446,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         </c:forEach>
                                         </select>
                                     </p>
-                                    
+                                    <input type="hidden" name="field＿name" value="value">
                                 </div>
                                 <div class="form-action">
                                     <input type="submit"/>
@@ -455,13 +455,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     </p>
                                 </div>
                             </form>
-	
-	
-	
-	
-	
-	
-	</div>
+</div>
  <!--footer top area start-->
         <div class="footer_area">
             <div class="container">

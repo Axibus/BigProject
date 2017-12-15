@@ -69,7 +69,7 @@ public class OrderController {
 		return m;	
 	}
 	
-	@RequestMapping("addOrder/orderadd")	
+	@RequestMapping("/orderadd")	
 	public ModelAndView orderAdd(@RequestParam(value="aid",required=false)int aid,@RequestParam(value="pid",required=false)int pid,HttpSession session){
 		
 		User u = (User)session.getAttribute("user");
